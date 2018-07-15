@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointState, BreakpointObserver } from '@angular/cdk/layout';
+import IM from '../../../node_modules/impress.js/js/impress.js';
 
 @Component({
   selector: 'app-dash',
@@ -9,12 +10,14 @@ import { Breakpoints, BreakpointState, BreakpointObserver } from '@angular/cdk/l
 })
 export class RootComponent {
   /** Based on the screen size, switch from standard to one column per row */
-  cards =  [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 2, rows: 1 },
-        { title: 'Card 3', cols: 2, rows: 1 },
-        { title: 'Card 4', cols: 2, rows: 1 }
-      ];
+  imgs = Array(9).fill('https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png');
+  reader = new FileReader();
 
   constructor() {}
+
+  onChange(e, img, index, frame) {
+    this.imgs[index] = URL.createObjectURL(e.target.files[0]);
+    img.setAttribute('src', this.imgs[index]);
+    console.log({a: frame});
+  }
 }
