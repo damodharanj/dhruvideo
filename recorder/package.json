@@ -1,0 +1,14 @@
+{
+  "name": "23cfed0b099b3df812bb2b27ba1be6a4-b9a1aadaafa31dad5df4fda6712bafc386c99b95",
+  "version": "1.0.0",
+  "description": "",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^1.6.0"
+  }
+}
