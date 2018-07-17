@@ -1,7 +1,4 @@
-import { Component, ViewChild, TemplateRef } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointState, BreakpointObserver } from '@angular/cdk/layout';
-import IM from '../../../node_modules/impress.js/js/impress.js';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dash',
@@ -18,6 +15,68 @@ export class RootComponent {
   onChange(e, img, index, frame) {
     this.imgs[index] = URL.createObjectURL(e.target.files[0]);
     img.setAttribute('src', this.imgs[index]);
-    console.log({a: frame});
+  }
+
+  renderVideo(iframe) {
+    const template = `
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=1024" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <title>impress.js </title>
+
+        <link href="https://impress.js.org/css/impress-demo.css" rel="stylesheet" />
+
+        <link rel="shortcut icon" href="favicon.png" />
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    </head>
+
+    <body class="impress-not-supported">
+
+    <div class="fallback-message">
+        <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+    </div>
+
+    <div id="impress" data-autoplay="1">
+
+        <div id="bored" class="step slide" data-x="-1000" data-y="-1500" data-autoplay="1">
+            <q>Aren’t you just <b>bored</b> with all those slides-based presentations?</q>
+        </div>
+
+        ${this.imgs.map((img, i) => `
+          <div class="step slide"
+            data-x="${(i) * 1000}"
+            data-y="${1500}"
+            data-rotate="${i * 360}"
+            data-autoplay="1">
+            <q>Aren’t you just <b>bored</b> with all those slides-based presentations?</q>
+            <img style="width: 100%; height: 100%;" src="${img}"/>
+          </div>
+        `).join('')}
+
+    </div>
+
+    <div id="impress-toolbar"></div>
+
+    <div class="hint">
+        <p>Use a spacebar or arrow keys to navigate. <br/>
+           Press 'P' to launch speaker console.</p>
+    </div>
+    <script>
+    if ("ontouchstart" in document.documentElement) {
+        document.querySelector(".hint").innerHTML = "<p>Swipe left or right to navigate</p>";
+    }
+    </script>
+
+    <script src="https://impress.js.org/js/impress.js"></script>
+    <script>impress().init();</script>
+
+    </body>
+    </html>
+    `;
+    iframe.src = 'about:blank';
+    iframe.contentDocument.write(template);
   }
 }
