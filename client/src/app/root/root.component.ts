@@ -1,5 +1,17 @@
 import { Component } from '@angular/core';
 
+const transcript = [
+  'Hello',
+  'Dei',
+  'Inga',
+  'Neriya',
+  'Info',
+  'irukku',
+  'COme',
+  'and',
+  'Get'
+];
+
 @Component({
   selector: 'app-dash',
   templateUrl: './root.component.html',
@@ -9,12 +21,17 @@ export class RootComponent {
   /** Based on the screen size, switch from standard to one column per row */
   imgs = Array(9).fill('https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png');
   reader = new FileReader();
+  script = transcript;
 
   constructor() {}
 
   onChange(e, img, index, frame) {
     this.imgs[index] = URL.createObjectURL(e.target.files[0]);
     img.setAttribute('src', this.imgs[index]);
+  }
+
+  updateScript(val) {
+    this.script = val.split('\n');
   }
 
   renderVideo(iframe) {
@@ -26,7 +43,8 @@ export class RootComponent {
         <meta name="viewport" content="width=1024" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <title>impress.js </title>
-
+        <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
         <link href="https://impress.js.org/css/impress-demo.css" rel="stylesheet" />
 
         <link rel="shortcut icon" href="favicon.png" />
@@ -48,10 +66,9 @@ export class RootComponent {
         ${this.imgs.map((img, i) => `
           <div class="step slide"
             data-x="${(i) * 1000}"
-            data-y="${1500}"
-            data-rotate="${i * 360}"
+            data-rotate="${i * 90}"
             data-autoplay="1">
-            <q>Aren’t you just <b>bored</b> with all those slides-based presentations?</q>
+            <q class="animated infinite rubberBand">${this.script[i]}</q>
             <img style="width: 100%; height: 100%;" src="${img}"/>
           </div>
         `).join('')}
