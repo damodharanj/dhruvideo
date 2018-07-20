@@ -68,7 +68,7 @@ export class RootComponent {
             data-x="${(i) * 1000}"
             data-rotate="${i * 90}"
             data-autoplay="1">
-            <q class="animated infinite rubberBand">${this.script[i]}</q>
+            <div class="animated infinite rubberBand">${this.script[i]}</div>
             <img style="width: 100%; height: 100%;" src="${img}"/>
           </div>
         `).join('')}
