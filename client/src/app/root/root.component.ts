@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 
 const transcript = [
-  'Hello',
-  'Dei',
-  'Inga',
-  'Neriya',
-  'Info',
-  'irukku',
-  'COme',
-  'and',
-  'Get'
+  ['Hello', 'jello'],
+  ['Dei', 'rubberBand'],
+  ['Inga', 'rubberBand'],
+  ['Neriya', 'rubberBand'],
+  ['Info', 'rubberBand'],
+  ['irukku', 'rubberBand'],
+  ['COme', 'rubberBand'],
+  ['and', 'rubberBand'],
+  ['Get', 'rubberBand']
 ];
 
 @Component({
@@ -68,7 +68,7 @@ export class RootComponent {
             data-x="${(i) * 1000}"
             data-rotate="${i * 90}"
             data-autoplay="1">
-            <div class="animated infinite rubberBand">${this.script[i]}</div>
+            <div class="animated infinite ${this.script[i][1]}">${this.script[i][0]}</div>
             <img style="width: 100%; height: 100%;" src="${img}"/>
           </div>
         `).join('')}
