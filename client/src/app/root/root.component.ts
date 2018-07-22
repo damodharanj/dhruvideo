@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Apollo} from 'apollo-angular';
+import gql from 'graphql-tag';
 
 const transcript = [
   ['Hello', 'jello'],
@@ -23,7 +25,25 @@ export class RootComponent {
   reader = new FileReader();
   script = transcript;
 
-  constructor() {}
+  constructor(
+    apollo: Apollo
+  ) {
+    apollo
+      .query({
+        query: gql`
+        {
+          hero {
+            name
+            friends {
+              name
+              appearsIn
+            }
+          }
+        }
+        `,
+      })
+      .subscribe(console.log);
+  }
 
   onChange(e, img, index, frame) {
     this.imgs[index] = URL.createObjectURL(e.target.files[0]);
@@ -31,7 +51,10 @@ export class RootComponent {
   }
 
   updateScript(val) {
-    this.script = val.split('\n');
+    const out = val.split('\n').map((x) => {
+      return x.split(',');
+    });
+    this.script = out;
   }
 
   renderVideo(iframe) {
