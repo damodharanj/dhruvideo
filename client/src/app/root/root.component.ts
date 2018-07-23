@@ -72,6 +72,11 @@ export class RootComponent {
 
         <link rel="shortcut icon" href="favicon.png" />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+        <style>
+          .slide {
+            width: 1500px;
+          }
+        </style>
     </head>
 
     <body class="impress-not-supported">
