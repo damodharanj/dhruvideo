@@ -3,7 +3,7 @@ import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
 
 const transcript = [
-  ['Hello', 'jello'],
+  ['Hello', 'jello', 'overlay'],
   ['Dei', 'rubberBand'],
   ['Inga', 'rubberBand'],
   ['Neriya', 'rubberBand'],
@@ -76,6 +76,16 @@ export class RootComponent {
           .slide {
             width: 1500px;
           }
+          .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #00000045;
+            text-align: center;
+            font-size: 150px;
+            padding-top: 256px;
+            color: white;
+          }
         </style>
     </head>
 
@@ -96,7 +106,7 @@ export class RootComponent {
             data-x="${(i) * 1000}"
             data-rotate="${i * 90}"
             data-autoplay="1">
-            <div class="animated infinite ${this.script[i][1]}">${this.script[i][0]}</div>
+            <div class="${this.script[i][2] ? this.script[i][2] : ''} animated infinite ${this.script[i][1]}">${this.script[i][0]}</div>
             <img style="width: 100%; height: 100%;" src="${img}"/>
           </div>
         `).join('')}
