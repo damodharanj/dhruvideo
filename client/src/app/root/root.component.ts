@@ -14,6 +14,20 @@ const transcript = [
   ['Get', 'rubberBand']
 ];
 
+function clickAndDownload(a, file, name) {
+  a.href = URL.createObjectURL(file);
+  a.target = '_blank';
+  a.download = name;
+  a.click();
+}
+
+function download  (value) {
+  const a = document.createElement('a');
+  const file = new Blob([value], {type: 'text/plain'});
+  clickAndDownload(a, file, 'video.html');
+}
+
+
 @Component({
   selector: 'app-dash',
   templateUrl: './root.component.html',
@@ -23,6 +37,7 @@ export class RootComponent {
   /** Based on the screen size, switch from standard to one column per row */
   imgs = Array(9).fill('https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png');
   reader = new FileReader();
+  template = '';
   script = transcript;
 
   constructor(
@@ -57,7 +72,7 @@ export class RootComponent {
     this.script = out;
   }
 
-  renderVideo(iframe) {
+  getTemplate() {
     const template = `
     <!doctype html>
     <html lang="en">
@@ -131,7 +146,18 @@ export class RootComponent {
     </body>
     </html>
     `;
-    iframe.src = 'about:blank';
-    iframe.contentDocument.write(template);
+    return template;
   }
+
+  renderVideo(iframe) {
+    const templ = this.getTemplate();
+    iframe.src = 'about:blank';
+    iframe.contentDocument.write(templ);
+  }
+
+  download() {
+    download(this.getTemplate());
+  }
+
+
 }
