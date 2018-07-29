@@ -3,15 +3,15 @@ import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
 
 const transcript = [
-  ['Hello', 'jello', 'overlay'],
-  ['Dei', 'rubberBand'],
-  ['Inga', 'rubberBand'],
-  ['Neriya', 'rubberBand'],
-  ['Info', 'rubberBand'],
-  ['irukku', 'rubberBand'],
-  ['COme', 'rubberBand'],
-  ['and', 'rubberBand'],
-  ['Get', 'rubberBand']
+  ['Hello', 'jello', 'overlay', '1'],
+  ['Dei', 'rubberBand', 'overlay', '1'],
+  ['Inga', 'rubberBand', 'overlay', '1'],
+  ['Neriya', 'rubberBand', 'overlay', '1'],
+  ['Info', 'rubberBand', 'overlay', '1'],
+  ['irukku', 'rubberBand', 'overlay', '1'],
+  ['COme', 'rubberBand', 'overlay', '1'],
+  ['and', 'rubberBand', 'overlay', '1'],
+  ['Get', 'rubberBand', 'overlay', '1']
 ];
 
 function clickAndDownload(a, file, name) {

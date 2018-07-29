@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloModule, Apollo } from 'apollo-angular';
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ApolloModule, Apollo } from 'apollo-angular';
     LayoutModule,
     HttpClientModule,
     HttpLinkModule,
-    ApolloModule
+    ApolloModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

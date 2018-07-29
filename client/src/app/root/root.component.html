@@ -4,10 +4,11 @@
       <mat-card-content fxLayout="row wrap" fxLayoutAlign="space-between" class="dashboard-card-content">
         <mat-card fxFlex="33">
           <h1>Image</h1>
-          <mat-grid-list [cols]="3">
+          <mat-grid-list [cols]="3" rowHeight="1:1.5">
             <mat-grid-tile *ngFor="let i of [0,1,2,3,4,5,6,7,8]" [colspan]="1" [rowspan]="1">
               <img #image src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png" class="width-60"/>
               <input (change)="onChange($event, image, i, iframe)" type="file" class="width-60 opacity"/>
+              <mat-slider></mat-slider>
             </mat-grid-tile>
           </mat-grid-list>
         </mat-card>
