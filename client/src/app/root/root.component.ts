@@ -3,15 +3,15 @@ import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
 
 const transcript = [
-  ['Hello', 'jello', 'overlay', '1'],
-  ['Dei', 'rubberBand', 'overlay', '1'],
-  ['Inga', 'rubberBand', 'overlay', '1'],
-  ['Neriya', 'rubberBand', 'overlay', '1'],
-  ['Info', 'rubberBand', 'overlay', '1'],
-  ['irukku', 'rubberBand', 'overlay', '1'],
-  ['COme', 'rubberBand', 'overlay', '1'],
-  ['and', 'rubberBand', 'overlay', '1'],
-  ['Get', 'rubberBand', 'overlay', '1']
+  ['Hello', 'jello', 'overlay', '3', '1'],
+  ['Dei', 'rubberBand', 'normal', '3', '2'],
+  ['Inga', 'rubberBand', 'normal', '3', '3'],
+  ['Neriya', 'rubberBand', 'normal', '3', '4'],
+  ['Info', 'rubberBand', 'normal', '3', '5'],
+  ['irukku', 'rubberBand', 'normal', '3', '6'],
+  ['COme', 'rubberBand', 'normal', '3', '1'],
+  ['and', 'rubberBand', 'normal', '3', '2'],
+  ['Get', 'rubberBand', 'normal', '3', '4']
 ];
 
 function clickAndDownload(a, file, name) {
@@ -112,28 +112,21 @@ export class RootComponent {
 
     <div id="impress" data-autoplay="1">
 
-        <div id="bored" class="step slide" data-x="-1000" data-y="-1500" data-autoplay="1">
-            <q>Aren’t you just <b>bored</b> with all those slides-based presentations?</q>
-        </div>
-
         ${this.imgs.map((img, i) => `
           <div class="step slide"
-            data-x="${(i) * 1000}"
-            data-rotate="${i * 90}"
-            data-autoplay="1">
+            data-x="${i * 1000}"
+            data-y="${i * 1000}"
+            data-y="${i * 1000}"
+            data-rotate-x="${i * 20}"
+            data-rotate-y="${i * 90}"
+            data-autoplay="${this.script[i][3]}">
             <div class="${this.script[i][2] ? this.script[i][2] : ''} animated infinite ${this.script[i][1]}">${this.script[i][0]}</div>
             <img style="width: 100%; height: 100%;" src="${img}"/>
           </div>
         `).join('')}
-
     </div>
 
     <div id="impress-toolbar"></div>
-
-    <div class="hint">
-        <p>Use a spacebar or arrow keys to navigate. <br/>
-           Press 'P' to launch speaker console.</p>
-    </div>
     <script>
     if ("ontouchstart" in document.documentElement) {
         document.querySelector(".hint").innerHTML = "<p>Swipe left or right to navigate</p>";
