@@ -42,3 +42,7 @@
 mat-slider {
   margin-top: 150px;
 }
+
+.card {
+  box-shadow: 5px 10px #888888;
+}
