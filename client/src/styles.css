@@ -66,3 +66,7 @@ input[type=file]::-webkit-file-upload-button {
 .margin-10 {
   margin: 10px;
 }
+
+.margin-5 {
+  margin: 5px;
+}
